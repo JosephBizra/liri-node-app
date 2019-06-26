@@ -11,7 +11,7 @@ var spotify = new Spotify(keys.spotify);
 
 
 var argument = process.argv[2];
-var search =  process.argv.slice(3).join(" ");
+var search = process.argv.slice(3).join(" ");
 console.log(argument);
 function concertThis(artist) {
     var url = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
@@ -51,16 +51,31 @@ function getOMDB(movie){
         }
     )
 }
-function itSays(doIt){
-    
-}
 
-if(argument == "concert-this"){
-    concertThis(search);
-} else if(argument == "spotify-this-song"){
-    spotifyThis(search);
-} else if(argument == "movie-this"){
-    getOMDB(search);
-} else if(argument == "do-what-it-says"){
-    itSays(search);
-}
+function itSays(doIt){
+    fs.readFile("random.txt", "utf8", function(error, data){
+        if (error) {
+            return console.log(error);
+          }
+        
+        // We will then print the contents of data
+            console.log(data);
+        // Then split it by commas (to make it more readable)
+            var dataArr = data.split(",");
+        
+            argument = dataArr[0];
+            search = dataArr[1];
+
+        });
+};
+
+
+    if(argument == "concert-this"){
+        concertThis(search);
+    } else if(argument == "spotify-this-song"){
+        spotifyThis(search);
+    } else if(argument == "movie-this"){
+        getOMDB(search);
+    } else if(argument == "do-what-it-says"){
+        itSays();
+    }
