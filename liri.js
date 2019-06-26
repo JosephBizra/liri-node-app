@@ -52,7 +52,7 @@ function getOMDB(movie){
     )
 }
 
-function itSays(doIt){
+function itSays(){
     fs.readFile("random.txt", "utf8", function(error, data){
         if (error) {
             return console.log(error);
@@ -66,6 +66,9 @@ function itSays(doIt){
             argument = dataArr[0];
             search = dataArr[1];
 
+            if(argument == "spotify-this-song"){
+                spotifyThis(search);
+            }
         });
 };
 
