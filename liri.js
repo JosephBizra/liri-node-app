@@ -39,6 +39,9 @@ function spotifyThis(singer){
     });
 }
 function getOMDB(movie){
+    if(!movie){
+        movie = "Mr. Nobody";
+    }
     var url = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=35878fb6"
     axios.get(url).then(
         function(response){
