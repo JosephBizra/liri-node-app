@@ -23,17 +23,19 @@ function concertThis(artist) {
     });
 }
 function spotifyThis(singer){
+    if(!singer){
+                singer = "The Sign";
+            }
+
     spotify.search({ type: 'track', query: singer }, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
         }
-        if(!singer){
-            singer = "The Sign";
-        }
+            console.log(data.tracks.items[0].name);
             console.log(data.tracks.items[0].artists[0].name);
             console.log(data.tracks.items[0].artists[0].href);
             console.log(data.tracks.items[0].album.name);
-            console.log(data.tracks.items[0].name);
+            
     });
 }
 function getOMDB(movie){
